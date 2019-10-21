@@ -1,10 +1,9 @@
 const express = require('express')
-//const Usuario = require('../models/usuario')
+// const Usuario = require('../models/usuario')
 const userController = require('../controllers/usuario')
-//const Bcript = require('bcrypt')
+// const Bcript = require('bcrypt')
 
 const router = express.Router()
-
 
 router.get('/', userController.getUser)
 router.get('/login', userController.userLogin)

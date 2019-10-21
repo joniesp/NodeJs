@@ -2,3 +2,4 @@ node_modules
 server/config
 server/controllers/login.js
 server/routes/login.js
+.eslintrc.json

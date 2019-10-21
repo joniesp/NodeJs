@@ -8,13 +8,11 @@ const app = express()
 
 app.use(routes)
 
-moongose.connect('mongodb://localhost:27017/apis',{useNewUrlParser: true}, (err, res) => {
-    if (err) 
-        throw err
-
-    console.log('BBDD online');
+moongose.connect('mongodb://localhost:27017/apis', { useNewUrlParser: true }, (err, res) => {
+  if (err) throw err
+  console.log('BBDD online')
 })
 
-app.listen(process.env.PORT, ()=> {
-    console.log(`puerto: ${process.env.PORT}`)
+app.listen(process.env.PORT, () => {
+  console.log(`puerto: ${process.env.PORT}`)
 })

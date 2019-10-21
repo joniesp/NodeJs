@@ -25,10 +25,12 @@ const insertUser = (req, res) => {
     let usuario = new Usuario({
         nombre: body.nombre,
         email: body.email,
-        password: body.password //Bcript.hashSync(body.password, 10),
+        password: body.password, //Bcript.hashSync(body.password, 10),
+        fecha: body.fecha,
+        telefono: body.telefono
     })
 
-    usuario.save( (err, dbUser) => {
+    usuario.save((err, dbUser) => {
         
         if (err) {
             return res.status(400).json({
@@ -88,9 +90,40 @@ const deleteUser = (req, res) => {
 
 }
 
+
+const userLogin = (req, res) => {
+
+    let body = req.body
+
+    Usuario.find({email: body.email}, (err, dbUser) => {
+        if (err) {
+            return res.status(400).json({
+                correcto: false,
+                err,
+                message: `El usuario ${body.email} no existe`
+            })
+        }
+
+        if (dbUser[0].password !== body.password) {
+            return res.status(401).json({
+                correcto: false,
+                message: 'contraseña incorrecta'
+            })
+        }
+
+        res.json({
+            correcto: true,
+            message: `login correcto`
+        })
+    })
+
+}
+
+
 module.exports = {
     getUser,
     insertUser,
     deleteUser,
-    updateUser
+    updateUser,
+    userLogin
 }

@@ -1,18 +1,12 @@
 require('./config/config')
 
+const routes = require('./app')
 const express = require('express')
-const bodyParser = require('body-parser')
 const moongose = require('mongoose')
 
 const app = express()
-const user = require('./routes/usuario')
-const login = require('./routes/login')
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
-
-app.use('/', user)
-app.use('/usuario', login)
+app.use(routes)
 
 moongose.connect('mongodb://localhost:27017/apis',{useNewUrlParser: true}, (err, res) => {
     if (err) 

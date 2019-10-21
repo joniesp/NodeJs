@@ -26,6 +26,7 @@ let usuarioSchema = new Schema({
     },
     fecha : {
         type: Date,
+        default: new Date()
     },
     telefono : {
         type: String,

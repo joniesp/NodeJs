@@ -10,7 +10,7 @@ const userLogin = (req, res) => {
     Usuario.find({email: body.email}, (err, dbUser) => {
         if (err) {
             return res.status(400).json({
-                correcto: false,
+                correcto: false,            
                 err,
                 message: `El usuario ${body.email} no existe`
             })

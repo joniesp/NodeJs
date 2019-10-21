@@ -3,13 +3,13 @@ const express = require('express')
 const userController = require('../controllers/usuario')
 //const Bcript = require('bcrypt')
 
-let app = express()
 const router = express.Router()
 
 
-router.get('/usuario', userController.getUser)
-router.post('/usuario', userController.insertUser)
-router.put('/usuario', userController.updateUser)
-router.delete('/usuario', userController.deleteUser)
+router.get('/', userController.getUser)
+router.get('/login', userController.userLogin)
+router.post('/', userController.insertUser)
+router.put('/', userController.updateUser)
+router.delete('/', userController.deleteUser)
 
 module.exports = router

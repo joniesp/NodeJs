@@ -11,7 +11,7 @@ const getUser = (req, res) => {
         message: 'usuario no encontrado'
       })
     }
-    res.json({ user: dbUser })
+    return res.status(200).json({ user: dbUser })
   })
 }
 
@@ -34,7 +34,7 @@ const insertUser = (req, res) => {
       })
     }
 
-    res.json({
+    return res.status(200).json({
       correcto: true,
       user: dbUser
     })
@@ -51,7 +51,7 @@ const updateUser = (req, res) => {
       })
     }
 
-    res.json({
+    return res.status(200).json({
       correcto: true,
       user: dbUser
     })
@@ -69,7 +69,7 @@ const deleteUser = (req, res) => {
       })
     }
 
-    res.json({
+    return res.status(200).json({
       correcto: true,
       message: 'usuario eliminado'
     })
@@ -95,7 +95,7 @@ const userLogin = (req, res) => {
       })
     }
 
-    res.json({
+    return res.status(200).json({
       correcto: true,
       message: 'login correcto'
     })

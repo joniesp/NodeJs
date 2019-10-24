@@ -29,9 +29,9 @@ const usuarioSchema = new Schema({
     default: new Date()
   },
   telefono: {
-    type: Number,
-    min: 9,
-    max: 9
+    type: String,
+    maxlength: 9,
+    minlength: 9
   }
 })
 /*

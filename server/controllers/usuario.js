@@ -1,4 +1,6 @@
 const Usuario = require('../models/usuario')
+const Bcript = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const getUser = (req, res) => {
   const body = req.body
@@ -21,7 +23,7 @@ const insertUser = (req, res) => {
   const usuario = new Usuario({
     nombre: body.nombre,
     email: body.email,
-    password: body.password, // Bcript.hashSync(body.password, 10),
+    password: Bcript.hashSync(body.password, 10),
     fecha: body.fecha,
     telefono: body.telefono
   })
@@ -88,16 +90,21 @@ const userLogin = (req, res) => {
       })
     }
 
-    if (dbUser[0].password !== body.password) {
+    if (!Bcript.compareSync(body.password, dbUser[0].password)) {
       return res.status(401).json({
         correcto: false,
         message: 'contraseña incorrecta'
       })
     }
 
+    const token = jwt.sign({
+      user: dbUser
+    }, 'token_prueba', { expiresIn: 60 * 60 * 24 * 30 })
+
     return res.status(200).json({
       correcto: true,
-      message: 'login correcto'
+      message: 'login correcto',
+      token
     })
   })
 }

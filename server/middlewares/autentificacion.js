@@ -1,12 +1,15 @@
-// const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
-const verificarToken = (res, req, next) => {
+const verificarToken = (req, res, next) => {
   const token = req.get('token') // aun no se si el header se llamará token o authorization lo estoy pensando aún
 
-  console.log(token)
-
-  res.json({
-    token
+  jwt.verify(token, process.env.SEED, (err, tokenDecoded) => {
+    if (err) {
+      return res.status(401).json({
+        msg: 'error',
+        err
+      })
+    }
   })
 
   next()

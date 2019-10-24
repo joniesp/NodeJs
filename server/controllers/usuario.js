@@ -99,7 +99,7 @@ const userLogin = (req, res) => {
 
     const token = jwt.sign({
       user: dbUser
-    }, 'token_prueba', { expiresIn: 60 * 60 * 24 * 30 })
+    }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN })
 
     return res.status(200).json({
       correcto: true,

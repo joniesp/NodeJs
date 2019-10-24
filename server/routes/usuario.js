@@ -2,7 +2,7 @@ const express = require('express')
 // const Usuario = require('../models/usuario')
 const userController = require('../controllers/usuario')
 // const Bcript = require('bcrypt')
-
+const { verficarToken } = require('../middlewares/autentificacion')
 const router = express.Router()
 
 router.get('/', userController.getUser)

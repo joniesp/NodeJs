@@ -6,6 +6,7 @@ const { verificarToken } = require('../middlewares/autentificacion')
 const router = express.Router()
 
 router.get('/', verificarToken, userController.getUser)
+router.get('/all', userController.getAllUsers)
 router.get('/login', userController.userLogin)
 router.post('/', userController.insertUser)
 router.put('/', userController.updateUser)

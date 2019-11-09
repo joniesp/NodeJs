@@ -17,6 +17,15 @@ const getUser = (req, res) => {
   })
 }
 
+const getAllUsers = (req, res) => {
+  Usuario.find({}, (err, usersDb) => {
+    if (err) return res.status(400).json({ err })
+    if (usersDb.length === 0) return res.status(404).json({ message: 'No hay usuarios en la bbdd' })
+
+    return res.status(200).json({ users: usersDb })
+  })
+}
+
 const insertUser = (req, res) => {
   const body = req.body
 
@@ -111,6 +120,7 @@ const userLogin = (req, res) => {
 
 module.exports = {
   getUser,
+  getAllUsers,
   insertUser,
   deleteUser,
   updateUser,

@@ -91,7 +91,7 @@ const userLogin = (req, res) => {
   const body = req.body
 
   Usuario.find({ email: body.email }, (err, dbUser) => {
-    if (err) {
+    if (err || dbUser.length === 0) {
       return res.status(400).json({
         correcto: false,
         err,
